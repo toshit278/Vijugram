@@ -5,6 +5,9 @@ const mongoose = require('mongoose')
 const {MONGOURI} = require('./config/keys')
 const PORT = process.env.PORT || 5000
 require("dotenv").config()
+const cors = require('cors'); 
+app.use(cors())
+const path =require('path')
 
 mongoose.connect(MONGOURI)
 
@@ -34,7 +37,7 @@ app.use(require('./routes/post'))
 app.use(require('./routes/user'))
 //bartaskar
 
-if(process.env.NODE_ENV=="production"){
+if(process.env.NODE_ENV==="production"){
     app.use(express.static('client/build'))
     const path =require('path')
     app.get("*",(req,res)=>{
